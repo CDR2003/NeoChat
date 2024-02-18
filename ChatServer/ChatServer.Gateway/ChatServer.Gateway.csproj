@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>ChatServer</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\ChatShared.Data\ChatShared.Data.csproj" />
+      <ProjectReference Include="..\..\ChatShared.Interfaces\ChatShared.Interfaces.csproj" />
+      <ProjectReference Include="..\ChatServer.Silo\ChatServer.Silo.csproj" />
+    </ItemGroup>
+
+</Project>
