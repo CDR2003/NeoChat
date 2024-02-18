@@ -1,4 +1,5 @@
-﻿using ChatShared.Interfaces;
+﻿using ChatGrainInterfaces;
+using ChatShared.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 
 namespace ChatServer;
@@ -12,10 +13,12 @@ public class ChatHub : Hub<IChatHub>
         _client = client;
     }
     
-    public Task SetNickname( string nickname )
+    public async Task SetNickname( string nickname )
     {
+        var user = _client.GetGrain<IUser>( this.Context.ConnectionId );
+        await user.SetNickname( nickname );
+        
         Console.WriteLine( $"Setting nickname for {Context.ConnectionId} to {nickname}" );
-        return Task.CompletedTask;
     }
     
     public Task SendMessage( string message )

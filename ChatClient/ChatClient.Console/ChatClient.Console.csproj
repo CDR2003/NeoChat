@@ -8,16 +8,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ChatShared.Data\ChatShared.Data.csproj" />
-      <ProjectReference Include="..\ChatShared.Interfaces\ChatShared.Interfaces.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.2" />
       <PackageReference Include="TypedSignalR.Client" Version="3.4.3">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\ChatShared\ChatShared.Data\ChatShared.Data.csproj" />
+      <ProjectReference Include="..\..\ChatShared\ChatShared.Interfaces\ChatShared.Interfaces.csproj" />
     </ItemGroup>
 
 </Project>

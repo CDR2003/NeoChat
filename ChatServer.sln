@@ -4,11 +4,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServer.Gateway", "ChatS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServer.Silo", "ChatServer\ChatServer.Silo\ChatServer.Silo.csproj", "{D3E50471-48DB-49FF-ADAD-B8BEF0DE05B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatShared.Interfaces", "ChatShared.Interfaces\ChatShared.Interfaces.csproj", "{AC942969-BBC3-4C9E-8AF5-518B35012D0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatShared.Interfaces", "ChatShared\ChatShared.Interfaces\ChatShared.Interfaces.csproj", "{AC942969-BBC3-4C9E-8AF5-518B35012D0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatShared.Data", "ChatShared.Data\ChatShared.Data.csproj", "{3BDE9E28-D0C1-4C40-89FB-7ADC1A42660E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatShared.Data", "ChatShared\ChatShared.Data\ChatShared.Data.csproj", "{3BDE9E28-D0C1-4C40-89FB-7ADC1A42660E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClient.Console", "ChatClient.Console\ChatClient.Console.csproj", "{B702AD47-529A-4203-83BF-4E09CBD37BEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClient.Console", "ChatClient\ChatClient.Console\ChatClient.Console.csproj", "{B702AD47-529A-4203-83BF-4E09CBD37BEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServer.GrainInterfaces", "ChatServer\ChatServer.GrainInterfaces\ChatServer.GrainInterfaces.csproj", "{A5C09143-BFAE-4551-9558-9B0E1E0D9C3C}"
 EndProject

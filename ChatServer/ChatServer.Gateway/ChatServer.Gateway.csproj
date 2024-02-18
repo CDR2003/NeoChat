@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\ChatShared.Data\ChatShared.Data.csproj" />
-      <ProjectReference Include="..\..\ChatShared.Interfaces\ChatShared.Interfaces.csproj" />
+      <ProjectReference Include="..\..\ChatShared\ChatShared.Data\ChatShared.Data.csproj" />
+      <ProjectReference Include="..\..\ChatShared\ChatShared.Interfaces\ChatShared.Interfaces.csproj" />
       <ProjectReference Include="..\ChatServer.Silo\ChatServer.Silo.csproj" />
     </ItemGroup>
 

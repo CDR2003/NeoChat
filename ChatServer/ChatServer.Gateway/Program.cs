@@ -5,7 +5,20 @@ var clientBuilder = Host.CreateDefaultBuilder( args )
     .UseConsoleLifetime();
 
 var host = clientBuilder.Build();
-await host.StartAsync();
+
+for( ;; )
+{
+    try
+    {
+        await host.StartAsync();
+        break;
+    }
+    catch( Exception e )
+    {
+        Console.WriteLine( "Failed to connect to silo: " + e.Message );
+        Console.WriteLine( "Retrying..." );
+    }
+}
 
 var builder = WebApplication.CreateBuilder( args );
 builder.Services.AddSignalR();

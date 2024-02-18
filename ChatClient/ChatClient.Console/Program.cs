@@ -13,8 +13,24 @@ class Program
         var connection = new HubConnectionBuilder().WithUrl( "http://localhost:5053/Chat" ).Build();
         
         C.Write( "Connecting to server... " );
-        await connection.StartAsync();
+        
+        for( ;; )
+        {
+            try
+            {
+                await connection.StartAsync();
+                break;
+            }
+            catch( Exception e )
+            {
+                C.WriteLine( "Failed to connect to server: " + e.Message );
+                C.WriteLine( "Retrying..." );
+            }
+        }
+        
         C.WriteLine( "Connected." );
+        
+        C.Write( "Please enter a nickname: " );
 
         var line = C.ReadLine() ?? "";
         var nickname = line.Trim();
