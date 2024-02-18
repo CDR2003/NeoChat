@@ -6,5 +6,5 @@ public interface IRoom : IGrainWithStringKey
     
     Task Leave( IUser user );
     
-    Task SendMessage( IUser user, string message );
+    Task SendMessage( IUser user, string message, IUser? except = null );
 }

@@ -29,14 +29,55 @@ class Program
         }
         
         C.WriteLine( "Connected." );
-        
+
+        var proxy = connection.CreateHubProxy<IChatHub>();
+        var receiver = new ChatReceiver();
+        connection.Register<IChatReceiver>( receiver );
+
         C.Write( "Please enter a nickname: " );
 
         var line = C.ReadLine() ?? "";
         var nickname = line.Trim();
-        var proxy = connection.CreateHubProxy<IChatHub>();
         await proxy.SetNickname( nickname );
         
         C.WriteLine( "Nickname set. Type a message to send." );
+        
+        for( ;; )
+        {
+            try
+            {
+                line = C.ReadLine() ?? "";
+                if( line.StartsWith( "/join", StringComparison.OrdinalIgnoreCase ) )
+                {
+                    var parts = line.Split( ' ' );
+                    if( parts.Length < 2 )
+                    {
+                        C.WriteLine( "Usage: /join <room>" );
+                        continue;
+                    }
+
+                    var room = parts[1];
+                    await proxy.JoinRoom( room );
+                    continue;
+                }
+
+                if( line.StartsWith( "/leave", StringComparison.OrdinalIgnoreCase ) )
+                {
+                    await proxy.LeaveRoom();
+                    continue;
+                }
+
+                if( line.StartsWith( "/quit", StringComparison.OrdinalIgnoreCase ) )
+                {
+                    break;
+                }
+
+                await proxy.SendMessage( line );
+            }
+            catch( Exception e )
+            {
+                C.WriteLine( "Error: " + e.Message );
+            }
+        }
     }
 }

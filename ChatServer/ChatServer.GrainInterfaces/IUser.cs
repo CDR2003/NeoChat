@@ -1,4 +1,6 @@
-﻿namespace ChatGrainInterfaces;
+﻿using ChatShared.Data;
+
+namespace ChatGrainInterfaces;
 
 public interface IUser : IGrainWithStringKey
 {
@@ -6,7 +8,9 @@ public interface IUser : IGrainWithStringKey
     
     Task JoinRoom( string roomName );
     
-    Task LeaveRoom( string roomName );
+    Task LeaveRoom();
     
     Task SendMessage( string message );
+    
+    Task OnMessageReceived( ChatMessage message );
 }

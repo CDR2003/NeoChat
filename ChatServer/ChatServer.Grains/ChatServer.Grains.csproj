@@ -11,4 +11,8 @@
       <ProjectReference Include="..\ChatServer.GrainInterfaces\ChatServer.GrainInterfaces.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Orleans.Serialization.Abstractions" Version="8.0.0" />
+    </ItemGroup>
+
 </Project>
