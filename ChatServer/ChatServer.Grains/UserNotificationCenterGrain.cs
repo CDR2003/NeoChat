@@ -6,7 +6,6 @@ using Orleans.Utilities;
 
 namespace ChatGrains;
 
-[StatelessWorker]
 public class UserNotificationCenterGrain : Grain, IUserNotificationCenter
 {
     private readonly ObserverManager<IUserObserver> _observerManager;
