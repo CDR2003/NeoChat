@@ -1,24 +1,31 @@
 ﻿using ChatGrainInterfaces;
+using ChatShared.Data;
 using ChatShared.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 
 namespace ChatServer;
 
-public class ChatHub : Hub<IChatHub>
+public class ChatHub : Hub<IChatReceiver>, IChatHub
 {
     private readonly IClusterClient _client;
-
+    
     public ChatHub( IClusterClient client )
     {
         _client = client;
     }
-    
+
     public async Task SetNickname( string nickname )
     {
         var user = _client.GetGrain<IUser>( this.Context.ConnectionId );
         await user.SetNickname( nickname );
         
         Console.WriteLine( $"Setting nickname for {Context.ConnectionId} to {nickname}" );
+    }
+    
+    public async Task<List<string>> GetRooms()
+    {
+        var manager = _client.GetGrain<IRoomManager>( 0 );
+        return await manager.GetRoomNames();
     }
     
     public async Task JoinRoom( string roomName )

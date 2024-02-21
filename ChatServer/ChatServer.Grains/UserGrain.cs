@@ -1,5 +1,7 @@
 ﻿using ChatGrainInterfaces;
 using ChatShared.Data;
+using Microsoft.Extensions.Logging;
+using Orleans.Utilities;
 
 namespace ChatGrains;
 
@@ -7,7 +9,12 @@ public class UserGrain : Grain, IUser
 {
     private string _nickname = "";
     
-    private IRoom? _currentRoom = null;
+    private IRoom? _currentRoom;
+
+    public Task<string> GetNickname()
+    {
+        return Task.FromResult( _nickname );
+    }
     
     public Task SetNickname( string nickname )
     {
@@ -54,7 +61,7 @@ public class UserGrain : Grain, IUser
 
     public Task OnMessageReceived( ChatMessage message )
     {
-        Console.WriteLine( $"User {this.GetPrimaryKeyString()} received message: {message}" );
-        return Task.CompletedTask;
+        var notificationCenter = this.GrainFactory.GetGrain<IUserNotificationCenter>( 0 );
+        return notificationCenter.NotifySendMessage( this.GetPrimaryKeyString(), message );
     }
 }

@@ -66,6 +66,17 @@ class Program
                     await proxy.LeaveRoom();
                     continue;
                 }
+                
+                if( line.StartsWith( "/list", StringComparison.OrdinalIgnoreCase ) )
+                {
+                    var rooms = await proxy.GetRooms();
+                    C.WriteLine( "Rooms:" );
+                    foreach( var room in rooms )
+                    {
+                        C.WriteLine( "  " + room );
+                    }
+                    continue;
+                }
 
                 if( line.StartsWith( "/quit", StringComparison.OrdinalIgnoreCase ) )
                 {

@@ -50,10 +50,10 @@ public class RoomGrain : Grain, IRoom
         await this.SendMessage( _system!, $"{user.GetPrimaryKeyString()} left the room" );
     }
 
-    public Task SendMessage( IUser user, string message, IUser? except = null )
+    public async Task SendMessage( IUser user, string message, IUser? except = null )
     {
         var timestamp = DateTime.Now;
-        var chatMessage = new ChatMessage( user.GetPrimaryKeyString(), message, timestamp );
+        var chatMessage = new ChatMessage( message, await user.GetNickname(), timestamp );
         
         foreach( var member in _members )
         {
@@ -61,10 +61,8 @@ public class RoomGrain : Grain, IRoom
             {
                 continue;
             }
-            
-            member.OnMessageReceived( chatMessage );
-        }
 
-        return Task.CompletedTask;
+            await member.OnMessageReceived( chatMessage );
+        }
     }
 }

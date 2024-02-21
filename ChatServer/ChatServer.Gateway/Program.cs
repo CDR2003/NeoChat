@@ -24,9 +24,10 @@ var builder = WebApplication.CreateBuilder( args );
 builder.Services.AddSignalR();
 builder.Services.AddCors();
 builder.Services.AddSingleton( host.Services.GetRequiredService<IClusterClient>() );
+builder.Services.AddHostedService<ChatObserver>();
 
 var app = builder.Build();
-app.UseCors( b => b.WithOrigins( "http://localhost:5053" ).AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin() );
+app.UseCors( b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin() );
 app.MapHub<ChatHub>( "/Chat" );
 
 app.Run();

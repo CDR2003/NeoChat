@@ -1,4 +1,6 @@
-﻿namespace ChatGrainInterfaces;
+﻿using Orleans.Concurrency;
+
+namespace ChatGrainInterfaces;
 
 public interface IRoom : IGrainWithStringKey
 {
@@ -6,5 +8,6 @@ public interface IRoom : IGrainWithStringKey
     
     Task Leave( IUser user );
     
+    [OneWay]
     Task SendMessage( IUser user, string message, IUser? except = null );
 }
